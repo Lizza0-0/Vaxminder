@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VaxMinder – Registrar Vacuna</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="app-wrapper">
+      <aside class="sidebar">
+        <div class="sidebar-logo">
+          <div class="logo-icon">💉</div>
+          <div class="logo-text">VaxMinder</div>
+        </div>
+        <nav class="sidebar-nav">
+          <span class="nav-section-label">Principal</span>
+          <a class="nav-item" href="dashboard.html"
+            ><span class="nav-icon"></span> Dashboard</a
+          >
+          <span class="nav-section-label">Vacunacion</span>
+          <a class="nav-item" href="vacunas.html"
+            ><span class="nav-icon"></span> Registrar Vacuna</a
+          >
+          <a class="nav-item" href="historial.html"
+            ><span class="nav-icon"></span> Historial</a
+          >
+          <span class="nav-section-label">Recordatorios</span>
+          <a class="nav-item" href="alertas.html"
+            ><span class="nav-icon"></span> Alertas<span
+              id="alert-badge"
+              class="badge badge-danger"
+              style="
+                margin-left: auto;
+                display: none;
+                font-size: 11px;
+                padding: 2px 7px;
+              "
+              >0</span
+            ></a
+          >
+          <span class="nav-section-label">Catalogos</span>
+          <a class="nav-item" href="centros.html"
+            ><span class="nav-icon"></span> Centros Medicos</a
+          >
+          <span class="nav-section-label">Documentos</span>
+          <a class="nav-item" href="carnet.html"
+            ><span class="nav-icon"></span> Carnet Digital</a
+          >
+        </nav>
+        <div class="sidebar-user">
+          <div class="avatar" id="sidebar-avatar">U</div>
+          <div class="user-info">
+            <div class="user-name" id="sidebar-user-name">Usuario</div>
+            <div class="user-role">Paciente</div>
+          </div>
+          <button class="btn-logout" onclick="logout()" title="Cerrar sesion">
+            Salir
+          </button>
+        </div>
+      </aside>
+
+      <div class="main-content">
+        <div class="topbar">
+          <div class="topbar-title">Registrar Vacuna</div>
+          <div class="topbar-actions">
+            <a href="historial.html" class="btn btn-ghost btn-sm"
+              >Ver historial</a
+            >
+          </div>
+        </div>
+
+        <div class="page-body">
+          <div class="card" style="max-width: 680px; margin: 0 auto">
+            <div class="card-title">Nueva aplicacion de vacuna</div>
+            <form id="form-vacuna" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="id_vacuna">Vacuna *</label>
+                <select class="form-control" id="id_vacuna" required>
+                  <option value="">Selecciona una vacuna...</option>
+                </select>
+                <span class="form-error">Selecciona una vacuna.</span>
+              </div>
+
+              <div
+                id="vacuna-info"
+                class="alert-banner info"
+                style="display: none; margin-bottom: 16px"
+              >
+                <span class="alert-icon">ℹ</span>
+                <div class="alert-body">
+                  <div class="alert-title" id="vac-nombre">—</div>
+                  <div class="alert-msg" id="vac-desc">—</div>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label" for="fecha_aplicacion"
+                    >Fecha de aplicacion *</label
+                  >
+                  <input
+                    class="form-control"
+                    type="date"
+                    id="fecha_aplicacion"
+                    required
+                  />
+                  <span class="form-error">Campo requerido.</span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="numero_dosis"
+                    >Numero de dosis *</label
+                  >
+                  <input
+                    class="form-control"
+                    type="number"
+                    id="numero_dosis"
+                    min="1"
+                    max="10"
+                    placeholder="Ej: 1"
+                    required
+                  />
+                  <span class="form-error">Campo requerido.</span>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label" for="lote_vacuna"
+                    >Lote del medicamento</label
+                  >
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="lote_vacuna"
+                    placeholder="Ej: LOT2024-001"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="id_centro_medico"
+                    >Centro medico</label
+                  >
+                  <select class="form-control" id="id_centro_medico">
+                    <option value="">Seleccionar...</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="proxima_dosis_fecha"
+                  >Fecha proxima dosis</label
+                >
+                <input
+                  class="form-control"
+                  type="date"
+                  id="proxima_dosis_fecha"
+                />
+                <span
+                  class="form-error"
+                  style="display: none; color: var(--clr-muted)"
+                  id="proxima-hint"
+                  >Se generara una alerta automatica.</span
+                >
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="observaciones"
+                  >Observaciones</label
+                >
+                <textarea
+                  class="form-control"
+                  id="observaciones"
+                  placeholder="Reacciones, notas adicionales..."
+                ></textarea>
+              </div>
+
+              <div style="display: flex; gap: 12px; justify-content: flex-end">
+                <a href="historial.html" class="btn btn-ghost">Cancelar</a>
+                <button type="submit" class="btn btn-accent">
+                  Guardar Registro
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast-container"></div>
+    <script src="../js/core.js"></script>
+    <script src="../js/usuarios.repo.js"></script>
+    <script src="../js/session.repo.js"></script>
+    <script src="../js/vacunas-catalogo.repo.js"></script>
+    <script src="../js/centros-medicos.repo.js"></script>
+    <script src="../js/alertas.repo.js"></script>
+    <script src="../js/registro-vacunacion.repo.js"></script>
+    <script src="../js/historial-pdf.repo.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/vacunas.js"></script>
+  </body>
+</html>

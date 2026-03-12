@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VaxMinder – Centros Médicos</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="app-wrapper">
+      <aside class="sidebar">
+        <div class="sidebar-logo">
+          <div class="logo-icon">💉</div>
+          <div class="logo-text">VaxMinder</div>
+        </div>
+        <nav class="sidebar-nav">
+          <span class="nav-section-label">Principal</span>
+          <a class="nav-item" href="dashboard.html"
+            ><span class="nav-icon"></span> Dashboard</a
+          >
+          <span class="nav-section-label">Vacunación</span>
+          <a class="nav-item" href="vacunas.html"
+            ><span class="nav-icon"></span> Registrar Vacuna</a
+          >
+          <a class="nav-item" href="historial.html"
+            ><span class="nav-icon"></span> Historial</a
+          >
+          <span class="nav-section-label">Recordatorios</span>
+          <a class="nav-item" href="alertas.html"
+            ><span class="nav-icon"></span> Alertas<span
+              id="alert-badge"
+              class="badge badge-danger"
+              style="
+                margin-left: auto;
+                display: none;
+                font-size: 11px;
+                padding: 2px 7px;
+              "
+              >0</span
+            ></a
+          >
+          <span class="nav-section-label">Catálogos</span>
+          <a class="nav-item" href="centros.html"
+            ><span class="nav-icon"></span> Centros Médicos</a
+          >
+          <span class="nav-section-label">Documentos</span>
+          <a class="nav-item" href="carnet.html"
+            ><span class="nav-icon"></span> Carnet Digital</a
+          >
+        </nav>
+        <div class="sidebar-user">
+          <div class="avatar" id="sidebar-avatar">U</div>
+          <div class="user-info">
+            <div class="user-name" id="sidebar-user-name">Usuario</div>
+            <div class="user-role">Paciente</div>
+          </div>
+          <button class="btn-logout" onclick="logout()" title="Cerrar sesión">
+            Salir
+          </button>
+        </div>
+      </aside>
+
+      <div class="main-content">
+        <div class="topbar">
+          <div class="topbar-title">Centros Médicos</div>
+          <div class="topbar-actions">
+            <button class="btn btn-accent btn-sm" onclick="abrirModal()">
+              + Agregar centro
+            </button>
+          </div>
+        </div>
+
+        <div class="page-body">
+          <div class="card mb-3" style="padding: 14px 18px">
+            <div class="search-bar">
+              <span class="search-icon">🔍</span>
+              <input
+                type="text"
+                id="buscar"
+                placeholder="Buscar por nombre o ciudad..."
+              />
+            </div>
+          </div>
+
+          <div
+            id="centros-grid"
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+              gap: 16px;
+            "
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-centro">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title" id="modal-titulo">
+            Nuevo Centro Médico
+          </div>
+          <button class="modal-close" onclick="closeModal('modal-centro')">
+            ✕
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="centro-id" />
+          <div class="form-group">
+            <label class="form-label">Nombre del centro *</label>
+            <input
+              class="form-control"
+              type="text"
+              id="nombre_centro"
+              placeholder="Hospital General..."
+            />
+            <span class="form-error">Campo requerido.</span>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Ciudad *</label>
+              <input
+                class="form-control"
+                type="text"
+                id="ciudad"
+                placeholder="Medellín"
+              />
+              <span class="form-error">Campo requerido.</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tipo de centro</label>
+              <select class="form-control" id="tipo_centro">
+                <option value="">Seleccionar...</option>
+                <option>Hospital</option>
+                <option>Clínica</option>
+                <option>Centro de Salud</option>
+                <option>IPS</option>
+                <option>EPS</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Dirección *</label>
+            <input
+              class="form-control"
+              type="text"
+              id="direccion"
+              placeholder="Calle 64 #51D-154"
+            />
+            <span class="form-error">Campo requerido.</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Teléfono</label>
+            <input
+              class="form-control"
+              type="tel"
+              id="telefono_centro"
+              placeholder="604 000 0000"
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-ghost" onclick="closeModal('modal-centro')">
+            Cancelar
+          </button>
+          <button class="btn btn-accent" id="btn-guardar">Guardar</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script src="../js/core.js"></script>
+    <script src="../js/usuarios.repo.js"></script>
+    <script src="../js/session.repo.js"></script>
+    <script src="../js/vacunas-catalogo.repo.js"></script>
+    <script src="../js/centros-medicos.repo.js"></script>
+    <script src="../js/alertas.repo.js"></script>
+    <script src="../js/registro-vacunacion.repo.js"></script>
+    <script src="../js/historial-pdf.repo.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/centros.js"></script>
+  </body>
+</html>

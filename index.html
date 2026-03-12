@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VaxMinder – Iniciar Sesion</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="auth-wrapper">
+      <div class="auth-card">
+        <div class="auth-logo">
+          <div class="logo-icon">💉</div>
+          <div class="logo-text">VaxMinder</div>
+        </div>
+
+        <h2 class="auth-title">Bienvenido</h2>
+        <p class="auth-subtitle">Ingresa a tu perfil de vacunacion</p>
+
+        <form id="login-form" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="email">Correo electronico</label>
+            <input
+              class="form-control"
+              type="email"
+              id="email"
+              placeholder="usuario@correo.com"
+              required
+            />
+            <span class="form-error" id="email-err"
+              >Ingresa un correo valido.</span
+            >
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password">Contrasena</label>
+            <input
+              class="form-control"
+              type="password"
+              id="password"
+              placeholder="••••••••"
+              required
+            />
+            <span class="form-error" id="pass-err">Ingresa tu contrasena.</span>
+          </div>
+
+          <div
+            id="login-error"
+            class="alert-banner danger"
+            style="display: none; margin-bottom: 16px"
+          >
+            <span class="alert-icon">⚠️</span>
+            <div class="alert-body">
+              <div class="alert-title">Credenciales incorrectas</div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-accent btn-full" id="btn-login">
+            Iniciar Sesion
+          </button>
+        </form>
+
+        <div class="auth-footer">
+          ¿No tienes cuenta? <a href="pages/registro.html">Registrate aqui</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script src="js/core.js"></script>
+    <script src="js/usuarios.repo.js"></script>
+    <script src="js/session.repo.js"></script>
+    <script src="js/vacunas-catalogo.repo.js"></script>
+    <script src="js/centros-medicos.repo.js"></script>
+    <script src="js/alertas.repo.js"></script>
+    <script src="js/registro-vacunacion.repo.js"></script>
+    <script src="js/historial-pdf.repo.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>

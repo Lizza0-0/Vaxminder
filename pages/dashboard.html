@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VaxMinder – Dashboard</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="app-wrapper">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+          <div class="logo-icon">💉</div>
+          <div class="logo-text">VaxMinder</div>
+        </div>
+        <nav class="sidebar-nav">
+          <span class="nav-section-label">Principal</span>
+          <a class="nav-item" href="dashboard.html"
+            ><span class="nav-icon"></span> Dashboard</a
+          >
+          <span class="nav-section-label">Vacunación</span>
+          <a class="nav-item" href="vacunas.html"
+            ><span class="nav-icon"></span> Registrar Vacuna</a
+          >
+          <a class="nav-item" href="historial.html"
+            ><span class="nav-icon"></span> Historial</a
+          >
+          <span class="nav-section-label">Recordatorios</span>
+          <a class="nav-item" href="alertas.html">
+            <span class="nav-icon"></span> Alertas
+            <span
+              id="alert-badge"
+              class="badge badge-danger"
+              style="
+                margin-left: auto;
+                display: none;
+                font-size: 11px;
+                padding: 2px 7px;
+              "
+              >0</span
+            >
+          </a>
+          <span class="nav-section-label">Catálogos</span>
+          <a class="nav-item" href="centros.html"
+            ><span class="nav-icon"></span> Centros Médicos</a
+          >
+          <span class="nav-section-label">Documentos</span>
+          <a class="nav-item" href="carnet.html"
+            ><span class="nav-icon"></span> Carnet Digital</a
+          >
+        </nav>
+        <div class="sidebar-user">
+          <div class="avatar" id="sidebar-avatar">U</div>
+          <div class="user-info">
+            <div class="user-name" id="sidebar-user-name">Usuario</div>
+            <div class="user-role">Paciente</div>
+          </div>
+          <button class="btn-logout" onclick="logout()" title="Cerrar sesión">
+            Salir
+          </button>
+        </div>
+      </aside>
+
+      <div class="main-content">
+        <div class="topbar">
+          <div class="topbar-title">
+            Dashboard <span>Resumen de vacunación</span>
+          </div>
+          <div class="topbar-actions">
+            <a href="vacunas.html" class="btn btn-accent btn-sm"
+              >+ Registrar vacuna</a
+            >
+          </div>
+        </div>
+
+        <div class="page-body">
+          <div class="stat-grid" id="stat-grid">
+            <div class="stat-card">
+              <div class="stat-icon green">💉</div>
+              <div>
+                <div class="stat-value" id="stat-total">0</div>
+                <div class="stat-label">Vacunas aplicadas</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon orange">⏳</div>
+              <div>
+                <div class="stat-value" id="stat-pendientes">0</div>
+                <div class="stat-label">Dosis pendientes</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon red">🔔</div>
+              <div>
+                <div class="stat-value" id="stat-alertas">0</div>
+                <div class="stat-label">Alertas activas</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon blue">📄</div>
+              <div>
+                <div class="stat-value" id="stat-pdfs">0</div>
+                <div class="stat-label">Carnets generados</div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px"
+            class="dashboard-grid"
+          >
+            <div class="card">
+              <div class="card-title">Alertas recientes</div>
+              <div id="alertas-list"></div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">Últimas vacunas registradas</div>
+              <div id="vacunas-recientes"></div>
+            </div>
+          </div>
+
+          <div class="card mt-4">
+            <div class="card-title">Próximas dosis programadas</div>
+            <div id="proximas-dosis"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script src="../js/core.js"></script>
+    <script src="../js/usuarios.repo.js"></script>
+    <script src="../js/session.repo.js"></script>
+    <script src="../js/vacunas-catalogo.repo.js"></script>
+    <script src="../js/centros-medicos.repo.js"></script>
+    <script src="../js/alertas.repo.js"></script>
+    <script src="../js/registro-vacunacion.repo.js"></script>
+    <script src="../js/historial-pdf.repo.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/dashboard.js"></script>
+
+    <style>
+      @media (max-width: 900px) {
+        .dashboard-grid {
+          grid-template-columns: 1fr !important;
+        }
+      }
+    </style>
+  </body>
+</html>
