@@ -1,0 +1,44 @@
+<!-- VaxMinder – _sidebar.html Copiar dentro de cada página entre <div class="sidebar"> -->
+<div class="sidebar-logo">
+  <div class="logo-icon">VM</div>
+  <div class="logo-text">VaxMinder</div>
+</div>
+<nav class="sidebar-nav">
+  <span class="nav-section-label">Principal</span
+  ><a class="nav-item" href="dashboard.html"
+    ><span class="nav-icon"></span> Dashboard </a
+  ><span class="nav-section-label">Vacunación</span
+  ><a class="nav-item" href="vacunas.html"
+    ><span class="nav-icon"></span> Registrar Vacuna </a
+  ><a class="nav-item" href="historial.html"
+    ><span class="nav-icon"></span> Historial </a
+  ><span class="nav-section-label">Recordatorios</span
+  ><a class="nav-item" href="alertas.html"
+    ><span class="nav-icon"></span> Alertas
+    <span
+      id="alert-badge"
+      class="badge badge-danger"
+      style="
+        margin-left: auto;
+        display: none;
+        font-size: 11px;
+        padding: 2px 7px;
+      "
+      >0</span
+    ></a
+  ><span class="nav-section-label">Catálogos</span
+  ><a class="nav-item" href="centros.html"
+    ><span class="nav-icon"></span> Centros Médicos </a
+  ><span class="nav-section-label">Documentos</span
+  ><a class="nav-item" href="carnet.html"
+    ><span class="nav-icon"></span> Carnet Digital
+  </a>
+</nav>
+<div class="sidebar-user">
+  <div class="avatar" id="sidebar-avatar">U</div>
+  <div class="user-info">
+    <div class="user-name" id="sidebar-user-name">Usuario</div>
+    <div class="user-role">Paciente</div>
+  </div>
+  <button class="btn-logout" onclick="logout()" title="Cerrar sesión"></button>
+</div>

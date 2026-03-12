@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VaxMinder – Registro</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="auth-wrapper">
+      <div class="auth-card" style="max-width: 520px">
+        <div class="auth-logo">
+          <div class="logo-icon">💉</div>
+          <div class="logo-text">VaxMinder</div>
+        </div>
+
+        <h2 class="auth-title">Crear cuenta</h2>
+        <p class="auth-subtitle">Completa tu informacion personal</p>
+
+        <form id="register-form" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="nombre">Nombre *</label>
+              <input
+                class="form-control"
+                type="text"
+                id="nombre"
+                placeholder="Ana Maria"
+                required
+              />
+              <span class="form-error">Campo requerido.</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="apellido">Apellido *</label>
+              <input
+                class="form-control"
+                type="text"
+                id="apellido"
+                placeholder="Mestra Perez"
+                required
+              />
+              <span class="form-error">Campo requerido.</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Correo electronico *</label>
+            <input
+              class="form-control"
+              type="email"
+              id="email"
+              placeholder="correo@ejemplo.com"
+              required
+            />
+            <span class="form-error">Ingresa un correo valido.</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contrasena"
+              >Contrasena * (minimo 6 caracteres)</label
+            >
+            <input
+              class="form-control"
+              type="password"
+              id="contrasena"
+              placeholder="••••••••"
+              required
+            />
+            <span class="form-error">Minimo 6 caracteres.</span>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="fecha_nacimiento"
+                >Fecha de nacimiento *</label
+              >
+              <input
+                class="form-control"
+                type="date"
+                id="fecha_nacimiento"
+                required
+              />
+              <span class="form-error">Campo requerido.</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="tipo_sangre">Tipo de sangre</label>
+              <select class="form-control" id="tipo_sangre">
+                <option value="">Seleccionar...</option>
+                <option>A+</option>
+                <option>A-</option>
+                <option>B+</option>
+                <option>B-</option>
+                <option>AB+</option>
+                <option>AB-</option>
+                <option>O+</option>
+                <option>O-</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="telefono">Telefono</label>
+            <input
+              class="form-control"
+              type="tel"
+              id="telefono"
+              placeholder="300 123 4567"
+            />
+          </div>
+
+          <div
+            id="reg-error"
+            class="alert-banner danger"
+            style="display: none; margin-bottom: 14px"
+          >
+            <span class="alert-icon">⚠️</span>
+            <div class="alert-body">
+              <div class="alert-title" id="reg-error-msg">Error</div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-accent btn-full">
+            Crear Cuenta
+          </button>
+        </form>
+
+        <div class="auth-footer">
+          ¿Ya tienes cuenta? <a href="../index.html">Iniciar sesion</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast-container"></div>
+    <script src="../js/core.js"></script>
+    <script src="../js/usuarios.repo.js"></script>
+    <script src="../js/session.repo.js"></script>
+    <script src="../js/vacunas-catalogo.repo.js"></script>
+    <script src="../js/centros-medicos.repo.js"></script>
+    <script src="../js/alertas.repo.js"></script>
+    <script src="../js/registro-vacunacion.repo.js"></script>
+    <script src="../js/historial-pdf.repo.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/registro.js"></script>
+  </body>
+</html>

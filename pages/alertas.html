@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VaxMinder – Alertas</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="app-wrapper">
+      <aside class="sidebar">
+        <div class="sidebar-logo">
+          <div class="logo-icon">💉</div>
+          <div class="logo-text">VaxMinder</div>
+        </div>
+
+        <nav class="sidebar-nav">
+          <span class="nav-section-label">Principal</span>
+          <a class="nav-item" href="dashboard.html"
+            ><span class="nav-icon"></span> Dashboard</a
+          >
+
+          <span class="nav-section-label">Vacunacion</span>
+          <a class="nav-item" href="vacunas.html"
+            ><span class="nav-icon"></span> Registrar Vacuna</a
+          >
+          <a class="nav-item" href="historial.html"
+            ><span class="nav-icon"></span> Historial</a
+          >
+
+          <span class="nav-section-label">Recordatorios</span>
+          <a class="nav-item" href="alertas.html">
+            <span class="nav-icon"></span> Alertas
+            <span
+              id="alert-badge"
+              class="badge badge-danger"
+              style="
+                margin-left: auto;
+                display: none;
+                font-size: 11px;
+                padding: 2px 7px;
+              "
+              >0</span
+            >
+          </a>
+
+          <span class="nav-section-label">Catalogos</span>
+          <a class="nav-item" href="centros.html"
+            ><span class="nav-icon"></span> Centros Medicos</a
+          >
+
+          <span class="nav-section-label">Documentos</span>
+          <a class="nav-item" href="carnet.html"
+            ><span class="nav-icon"></span> Carnet Digital</a
+          >
+        </nav>
+
+        <div class="sidebar-user">
+          <div class="avatar" id="sidebar-avatar">U</div>
+          <div class="user-info">
+            <div class="user-name" id="sidebar-user-name">Usuario</div>
+            <div class="user-role">Paciente</div>
+          </div>
+          <button class="btn-logout" onclick="logout()" title="Cerrar sesion">
+            Salir
+          </button>
+        </div>
+      </aside>
+
+      <div class="main-content">
+        <div class="topbar">
+          <div class="topbar-title">Alertas y Recordatorios</div>
+          <div class="topbar-actions">
+            <button class="btn btn-ghost btn-sm" id="btn-marcar-todas">
+              Marcar todas como leídas
+            </button>
+            <button class="btn btn-accent btn-sm" id="btn-nueva">
+              ➕ Nueva alerta
+            </button>
+          </div>
+        </div>
+
+        <div class="page-body">
+          <div
+            style="
+              display: flex;
+              gap: 8px;
+              margin-bottom: 20px;
+              flex-wrap: wrap;
+            "
+          >
+            <button class="btn btn-sm btn-accent" data-filtro="">Todas</button>
+            <button class="btn btn-sm btn-ghost" data-filtro="pendiente">
+              Pendientes
+            </button>
+            <button class="btn btn-sm btn-ghost" data-filtro="leída">
+              Leídas
+            </button>
+            <button class="btn btn-sm btn-ghost" data-filtro="descartada">
+              Descartadas
+            </button>
+          </div>
+          <div id="alertas-container"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-alerta">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">Nueva alerta manual</div>
+          <button class="modal-close" onclick="closeModal('modal-alerta')">
+            ✕
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form id="form-alerta" novalidate>
+            <div class="form-group">
+              <label class="form-label">Tipo de alerta *</label>
+              <select class="form-control" id="tipo_alerta" required>
+                <option value="">Seleccionar...</option>
+                <option value="recordatorio">Recordatorio</option>
+                <option value="refuerzo">Refuerzo</option>
+                <option value="vencimiento">Vencimiento</option>
+              </select>
+              <span class="form-error">Campo requerido.</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Fecha de alerta *</label>
+              <input
+                class="form-control"
+                type="date"
+                id="fecha_alerta"
+                required
+              />
+              <span class="form-error">Campo requerido.</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Mensaje *</label>
+              <textarea
+                class="form-control"
+                id="mensaje_alerta"
+                placeholder="Describe el recordatorio..."
+                required
+              ></textarea>
+              <span class="form-error">Campo requerido.</span>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-ghost" onclick="closeModal('modal-alerta')">
+            Cancelar
+          </button>
+          <button class="btn btn-accent" id="btn-guardar-alerta">
+            Guardar alerta
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script src="../js/core.js"></script>
+    <script src="../js/usuarios.repo.js"></script>
+    <script src="../js/session.repo.js"></script>
+    <script src="../js/vacunas-catalogo.repo.js"></script>
+    <script src="../js/centros-medicos.repo.js"></script>
+    <script src="../js/alertas.repo.js"></script>
+    <script src="../js/registro-vacunacion.repo.js"></script>
+    <script src="../js/historial-pdf.repo.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/alertas.js"></script>
+  </body>
+</html>
